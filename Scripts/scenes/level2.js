@@ -10,11 +10,11 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var scenes;
 (function (scenes) {
-    var PlayScene = /** @class */ (function (_super) {
-        __extends(PlayScene, _super);
+    var NewScene = /** @class */ (function (_super) {
+        __extends(NewScene, _super);
         // Public Properties
         // Constructor
-        function PlayScene() {
+        function NewScene() {
             var _this = _super.call(this) || this;
             _this.Start();
             return _this;
@@ -22,7 +22,7 @@ var scenes;
         // Private Mathods
         // Public Methods
         // Initialize Game Variables and objects
-        PlayScene.prototype.Start = function () {
+        NewScene.prototype.Start = function () {
             this._ocean = new objects.Ocean();
             this._plane = new objects.Plane();
             managers.Game.plane = this._plane;
@@ -30,7 +30,7 @@ var scenes;
             this._island = new objects.Island();
             // instantiate the cloud array
             this._clouds = new Array();
-            this._cloudNum = 3;
+            this._cloudNum = 2;
             // loop and add each cloud to the array
             for (var count = 0; count < this._cloudNum; count++) {
                 this._clouds[count] = new objects.Cloud();
@@ -44,7 +44,7 @@ var scenes;
             this.Main();
         };
         // triggered every frame
-        PlayScene.prototype.Update = function () {
+        NewScene.prototype.Update = function () {
             var _this = this;
             this._ocean.Update();
             this._plane.Update();
@@ -64,12 +64,9 @@ var scenes;
                 this._engineSound.stop();
                 managers.Game.currentScene = config.Scene.OVER;
             }
-             //When player reaches 500 points change to new Scene (Scene 2)
-            if(this._scoreBoard.Score == 500){
-            managers.Game.currentScene = config.Scene.LEVEL2;
-            };
+        };
         // This is where the fun happens
-        PlayScene.prototype.Main = function () {
+        NewScene.prototype.Main = function () {
             var _this = this;
             // add the ocean to the scene
             this.addChild(this._ocean);
@@ -88,8 +85,8 @@ var scenes;
             this.addChild(this._scoreBoard.LivesLabel);
             this.addChild(this._scoreBoard.ScoreLabel);
         };
-        return PlayScene;
+        return NewScene;
     }(objects.Scene));
-    scenes.PlayScene = PlayScene;
+    scenes.NewScene = NewScene;
 })(scenes || (scenes = {}));
 //# sourceMappingURL=play.js.map

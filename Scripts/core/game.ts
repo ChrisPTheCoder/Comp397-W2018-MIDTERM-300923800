@@ -1,5 +1,4 @@
 /// <reference path="_references.ts"/>
-
 // IIFE - Immediately Invoked Function Expression
 (function () {
 
@@ -138,6 +137,12 @@
         break;
       case config.Scene.PLAY:
         currentScene = new scenes.PlayScene();
+        break;
+      case config.Scene.LEVEL2:
+        currentScene = new scenes.NewScene();
+        break;
+      case config.Scene.LEVEL3:
+        currentScene = new scenes.LastScene();
         break;
       case config.Scene.OVER:
         currentScene = new scenes.OverScene();

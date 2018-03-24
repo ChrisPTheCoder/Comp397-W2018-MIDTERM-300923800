@@ -57,6 +57,15 @@ module objects {
        this.x += 5;
      }
 
+     if (managers.Game.keyboardManager.moveForward)
+     {
+         this.y += 5;
+     }
+     if(managers.Game.keyboardManager.moveBackward)
+     {
+         this.y -= 5;
+     }
+
      this.planeFlash.x = this.x;
      this.planeFlash.y = this.y;
 

@@ -27,24 +27,76 @@ module objects {
 
     // reset the objects location to some value
     public Reset():void {
-      this.x = Math.floor((Math.random() * (640 - this.width)) + this.halfWidth);
-      this.y = -this.height;
-      this._dx = Math.floor((Math.random() * 4) - 2);
-      this._dy = Math.floor((Math.random() * 5) + 5);
+      //this.x = Math.floor((Math.random() * (640 - this.width)) + this.halfWidth);
+     // this.y = -this.height;
+     // this._dx = Math.floor((Math.random() * 4) - 2);
+     // this._dy = Math.floor((Math.random() * 5) + 5);
+     switch (managers.Game.currentScene) {
+      case config.Scene.PLAY:
+        this.x = Math.floor((Math.random() * (640 - this.width)) +  this.halfWidth);
+        this.y = -this.height;
+        this._dx = Math.floor((Math.random() * 4) - 2);
+        this._dy = Math.floor((Math.random() * 5)  + 5);
+        break;
+      case config.Scene.LEVEL2:
+        this.x = 640;
+        this.y = Math.floor((Math.random() * (480 - this.height)) +  this.halfHeight);
+        this._dx = Math.floor((Math.random() * 4)  + 5);
+        this._dy = Math.floor((Math.random() * 5) - 2);2
+      break;
+      case config.Scene.LEVEL3:
+      this.x = 0;
+      this.y = Math.floor((Math.random() * (480 - this.height)) +  this.halfHeight);
+      this._dx = Math.floor((Math.random() * 4) + 5);
+      this._dy = Math.floor((Math.random() * 5) - 2);
+      break;
     }
+  }
 
     // move the object to some new location
     public Move():void {
-      this.y += this._dy;
-      this.x += this._dx;
+      //this.y += this._dy;
+      //this.x += this._dx;
+      switch (managers.Game.currentScene) {
+        case config.Scene.PLAY:
+        this.y += this._dy;
+        this.x += this._dx;
+        break;
+        case config.Scene.LEVEL2:
+        this.y += this._dy;
+        this.x -= this._dx;
+        break;
+        case config.Scene.LEVEL3:
+        this.y += this._dy;
+        this.x += this._dx;
+        break;
+      }
     }
 
     // check to see if some boundary has been passed
     public CheckBounds():void {
       // check lower bounds
-      if(this.y >= 480 + this.height) {
-        this.Reset();
+      //if(this.y >= 480 + this.height) {
+        //this.Reset();
+      switch (managers.Game.currentScene)
+      {
+        case config.Scene.PLAY:
+        if (this.y >= 480 + this.height){
+          this.Reset();
+        }
+        break;
+        case config.Scene.LEVEL2:
+        if(this.x <= 0){
+          this.Reset();
+        }
+        break;
+        case config.Scene.LEVEL3:
+        if(this.x >= this.width + 640){
+          this.Reset();
+        }
+        break;
+       }
       }
     }
   }
-}
+

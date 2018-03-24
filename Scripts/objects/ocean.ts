@@ -2,7 +2,7 @@ module objects {
   export class Ocean extends createjs.Bitmap {
     // private instance variables
     private _dy: number;
-
+    private _dx: number;
     // public properties
 
     // Constructor
@@ -15,7 +15,18 @@ module objects {
 
     // reset the objects location to some value
     private _reset():void {
-      this.y = -960;
+      //this.y = -960;
+      switch (managers.Game.currentScene) {
+        case config.Scene.PLAY:
+        this.y = -960;
+        break;
+        case config.Scene.LEVEL2:
+         this.x = 1280;
+        break;
+        case config.Scene.LEVEL3:
+        this.x = 640;
+        break;
+        }
     }
 
     // move the object to some new location

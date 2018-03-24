@@ -28,8 +28,22 @@ var objects;
             this.CheckBounds();
         };
         Coin.prototype.CheckBounds = function () {
-            if (this.y > (480 + this.height)) {
-                this.alpha = 1;
+            switch (managers.Game.currentScene) {
+                case config.Scene.PLAY:
+                    if (this.y > (480 + this.height)) {
+                        this.alpha = 1;
+                    }
+                    break;
+                case config.Scene.LEVEL2:
+                    if (this.x <= 5) {
+                        this.alpha = 1;
+                    }
+                    break;
+                case config.Scene.LEVEL3:
+                    if (this.x >= 635) {
+                        this.alpha = 1;
+                    }
+                    break;
             }
         };
         return Coin;
